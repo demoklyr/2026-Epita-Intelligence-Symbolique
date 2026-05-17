@@ -314,6 +314,8 @@ Les notebooks suivants sont disponibles dans le depot CoursIA ([jsboige/CoursIA]
 ### Categorie S : Trading Algorithmique Symbolique
 
 > Les sujets de la categorie S combinent un **noyau IA Symbolique** (logique epistemique, web semantique, verification formelle SMT, programmation probabiliste) avec une validation pratique via la plateforme [QuantConnect Lean](https://www.quantconnect.com/). Chaque projet est fondamentalement symbolique et utilise le backtest QuantConnect uniquement comme couche de validation sur donnees reelles de marche. Les etudiants ayant rejoint l'organisation QuantConnect sponsorisee par Jared Broad (CEO QC) sont encourages a choisir en priorite ces sujets.
+>
+> **Attention** : Si votre objectif est d'optimiser un portefeuille par programmation par contraintes (CP-SAT, MiniZinc, CPMpy, MIP), consultez la [Categorie M du cours Programmation par Contraintes](https://github.com/jsboigeEpita/2026-Epita-Programmation-par-Contraintes#categorie-m--finance-quantitative-et-trading-algorithmique). La categorie S vise le **raisonnement symbolique formel** sur acteurs, contrats et regimes de marche — pas l'optimisation numerique.
 
 | # | Sujet | Difficulte |
 |---|-------|------------|
@@ -2973,12 +2975,14 @@ Le theoreme d'impossibilite d'Arrow (1951) demontre qu'aucune procedure de vote 
 
 La theorie de la capture reglementaire (Stigler, 1971 ; Laffont & Tirole, 1993) modelise comment un agent regulate peut etre influence par l'agent qu'il est cense controler, lorsque l'information est asymetrique et les incentives mal alignees. Ce cadre theorique s'applique a la concentration mediatique, aux lobbys industriels, et aux relations finance-regulateur. Ce sujet propose de formaliser ces dynamiques par deux outils symboliques complementaires : la logique epistemique multi-agents (Kripke, connaissance partagee, annonces publiques) pour modeliser l'information asymetrique et ses effets sur les croyances, et l'argumentation structuree de Dung (frameworks d'attaque, extensions, semantics) pour modeliser les debats publics et la manipulation de l'information. Les etudiants implementent un raisonneur epistemique et un systeme d'argumentation, puis les combinent pour simuler des scenarios de capture et analyser formellement les conditions sous lesquelles l'information est degradee pour le principal (citoyen).
 
+> **Posture academique** : ce sujet demande de **modeliser formellement** des mecanismes informationnels, pas de defendre une these politique. Le verdict descriptif "capture" est une conclusion possible de la modelisation, pas un prejuge. Le critere de notation est la qualite de la formalisation (argumentation, logique epistemique, donnees), non l'opinion. Les cas d'etude combines un cas historique non controverse (crise des Savings & Loans 1980s, BCCI 1991, Madoff/SEC pre-2008) et un cas structurel neutre analyse par taille ou par age de marche.
+
 ### Objectifs
 - Implementer un modele de Kripke multi-agents capturant l'information asymetrique entre regulate, industrie et citoyens (Ki, croyances croisees, knowledge gaps)
 - Implementer un framework d'argumentation de Dung avec semantiques (grounded, preferred, stable) et l'appliquer a des debats publics sur des questions reglementaires
-- Modeliser la capture reglementaire comme un jeu a information asymetrique ou l'agent industriel controle une partie du flux d'information (public announcements partielles, desinformation) et analyser formellement les conditions d'equilibre
+- Modeliser le jeu informationnel regulateur/regule comme un jeu a information asymetrique ou l'agent regule controle une partie du flux d'information (public announcements partielles) et analyser formellement les conditions d'equilibre
 - Combiner logique epistemique et argumentation : un argument est accepte ou rejete en fonction de l'etat epistemique de l'agent, et les annonces publiques modifient cet etat
-- Evaluer sur des scenarios tires de cas documentes (concentration mediatique francaise, lobbying climatique, regulation financiere post-2008) avec donnees publiques (ACM, ARCOM, registres de transparence europeens)
+- Evaluer sur deux cas d'etude documentes : (1) un cas historique (S&L crisis, Madoff/SEC) et (2) un cas structurel neutre (concentration par taille de marche, registres de transparence europeens, ACM/ARCOM)
 
 ### Notebooks CoursIA pertinents
 
