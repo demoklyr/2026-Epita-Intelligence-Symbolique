@@ -134,9 +134,10 @@ Les notebooks suivants sont disponibles dans le depot CoursIA ([jsboige/CoursIA]
 |---|-------|------------|
 | [A1](#a1--preuve-formelle-dalgorithme-par-lean-4) | Preuve formelle d'algorithme par Lean 4 | 3/5 |
 | [A2](#a2--agent-llm-assiste-pour-la-preuve-formelle) | Agent LLM-assiste pour la preuve formelle | 4/5 |
-| [A3](#a3--theoreme-darrow-par-preuve-automatisee-satz3lean) | Theoreme d'Arrow par preuve automatisee (SAT/Z3/Lean) | 4/5 |
+| [A3](#a3--theoreme-darrow-par-preuve-automatisee-satz3lean) | Theoreme d'Arrow par preuve automatisee (SAT/Z3/Lean) | 5/5 |
 | [A4](#a4--bibliotheque-de-preuves-mathlib--extensions) | Bibliotheque de preuves Mathlib — extensions | 3/5 |
 | [A5](#a5--mariages-stables-gale-shapley--preuve-formelle-et-extensions-en-lean-4) | Mariages stables Gale-Shapley : preuve formelle et extensions en Lean 4 | 3/5 |
+| [A6](#a6--preuve-de-lexistence-de-nash-par-le-theoreme-de-point-fixe-de-kakutani-en-lean-4) | Preuve de l'existence de Nash par le theoreme de point fixe de Kakutani en Lean 4 | 5/5 |
 
 ### Categorie B : Logique Formelle, SAT et Demonstration Automatique
 
@@ -260,6 +261,7 @@ Les notebooks suivants sont disponibles dans le depot CoursIA ([jsboige/CoursIA]
 | [M5](#m5--evaluation-comparee-llm-vs-approches-symboliques-sur-un-benchmark) | Evaluation comparee LLM vs. approches symboliques sur un benchmark | 2/5 |
 | [M6](#m6--theorie-de-linformation-integree-iit-et-conscience-artificielle-par-pyphi) | Theorie de l'Information Integree (IIT) et conscience artificielle par PyPhi | 3/5 |
 | [M7](#m7--generation-de-contenu-neuro-symbolique-par-semantic-kernel--validation-csp) | Generation de contenu neuro-symbolique par Semantic Kernel + validation CSP | 4/5 |
+| [M8](#m8--demonstration-automatique-neuro-symbolique--agent-llm-pour-lean-4) | Demonstration automatique neuro-symbolique : agent LLM pour Lean 4 | 5/5 |
 
 ### Categorie N : Raisonnement Causal et Decision
 
@@ -271,7 +273,7 @@ Les notebooks suivants sont disponibles dans le depot CoursIA ([jsboige/CoursIA]
 | [N2](#n2--raisonnement-causal-par-le-do-calculus-avec-dowhy) | Raisonnement causal par le do-calculus avec DoWhy | 3/5 |
 | [N3](#n3--diagnostic-abductif--raisonnement-par-abduction) | Diagnostic abductif — raisonnement par abduction | 3/5 |
 | [N4](#n4--evaluation-du-raisonnement-causal-des-llm) | Evaluation du raisonnement causal des LLM | 4/5 |
-| [N5](#n5--planification-oncologique-symbolique-ontologies-z3-et-modeles-probabilistes) | Planification oncologique symbolique (ontologies, Z3 et modeles probabilistes) | 4/5 |
+| [N5](#n5--planification-oncologique-symbolique-ontologies-z3-et-modeles-probabilistes) | Planification oncologique symbolique (ontologies, Z3 et modeles probabilistes) | 5/5 |
 
 ### Categorie O : Raisonnement Qualitatif et Bon Sens
 
@@ -440,7 +442,7 @@ Le theoreme d'impossibilite d'Arrow (1951) affirme qu'aucune regle d'agregation 
 - Tang, P. & Lin, F. (2009). "Computer-Aided Proofs of Arrow's and Other Impossibility Theorems." *Artificial Intelligence*, 173(11), 1041-1053. [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0004370209000827)
 - Brandt, F. et al. (2016). *Handbook of Computational Social Choice*. Cambridge. [cambridge.org](https://www.cambridge.org/core/books/handbook-of-computational-social-choice/)
 
-### Difficulte : 4/5
+### Difficulte : 5/5
 
 ---
 
@@ -501,6 +503,38 @@ Le theoreme de Gale-Shapley (1962) garantit l'existence d'un mariage stable pour
 - Mathlib Stable Marriage. [leanprover-community](https://github.com/leanprover-community/mathlib4/)
 
 ### Difficulte : 3/5
+
+---
+
+#### A6 — Preuve de l'existence de Nash par le theoreme de point fixe de Kakutani en Lean 4
+
+Le theoreme d'existence de Nash (1950) affirme que tout jeu fini a N joueurs admet au moins un equilibre en strategies mixtes. La preuve classique invoque le theoreme du point fixe de Kakutani (1941) : l'application de meilleure reponse d'un jeu definit une correspondance convex-valued a points fixes sur le produit des simplexes de strategies mixtes. Ce sujet propose de formaliser cette chaine de raisonnement en Lean 4 : (1) definir les jeux sous forme normale et les strategies mixtes comme distributions sur un type fini ; (2) construire la correspondance de meilleure reponse et prouver sa convexite et sa fermeture ; (3) enoncer et prouver le theoreme de Kakutani (ou l'admettre comme axiome si Mathlib ne le contient pas encore) ; (4) combiner pour obtenir le theoreme d'existence de Nash. C'est un sujet de recherche en mathematiques formelles : la formalisation complete n'existe pas dans Mathlib a ce jour, et les etudiants devront naviguer entre analyse convexe, topologie des simplexes et theorie des jeux. Le notebook CoursIA GT-4b couvre l'approche SMT comme alternative plus accessible.
+
+### Objectifs
+1. Definir les jeux sous forme normale en Lean 4 (joueurs, strategies pures, fonctions d'utilite) et les strategies mixtes comme fonctions de probabilite sur un type fini
+2. Construire la correspondance de meilleure reponse et prouver que son image est convexe et fermee pour chaque joueur
+3. Enoncer le theoreme de point fixe de Kakutani et determiner sa disponibilite dans Mathlib (ou formaliser un cas special suffisant)
+4. Combiner les composants pour prouver le theoreme d'existence de Nash
+5. Comparer avec l'approche SMT (GT-4c Python) et l'encodage Lemke-Howson (GT-4 notebook) comme alternatives calculatoires
+
+### Notebooks CoursIA pertinents
+
+| Notebook | Chemin | Pertinence |
+|----------|--------|------------|
+| GT-4 Nash Equilibrium | [GameTheory/GameTheory-4-NashEquilibrium.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GameTheory/GameTheory-4-NashEquilibrium.ipynb) | Equilibres de Nash, Lemke-Howson |
+| GT-4b Lean Nash | [GameTheory/GameTheory-4b-Lean-NashExistence.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GameTheory/GameTheory-4b-Lean-NashExistence.ipynb) | Preuve d'existence en Lean 4 |
+| GT-4c Nash Python | [GameTheory/GameTheory-4c-NashExistence-Python.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GameTheory/GameTheory-4c-NashExistence-Python.ipynb) | Implementation Python |
+| Lean-4 Mathlib | [SymbolicAI/Lean/Lean-4-Mathlib.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Lean/Lean-4-Mathlib.ipynb) | Structures topologiques Mathlib |
+| Lean-8 Agentic Proving | [SymbolicAI/Lean/Lean-8-AgenticProving.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Lean/Lean-8-AgenticProving.ipynb) | Preuve automatisee par agent |
+
+### References externes
+- Nash, J.F. (1950). "Equilibrium Points in N-Person Games." *PNAS*, 36(1), 48-49. [PNAS](https://www.pnas.org/doi/10.1073/pnas.36.1.48)
+- Kakutani, S. (1941). "A Generalization of Brouwer's Fixed Point Theorem." *Duke Mathematical Journal*, 8(3), 457-459. [Duke](https://doi.org/10.1215/S0012-7094-41-00838-4)
+- Geanakoplos, J. (2003). "Nash and Walras Equilibrium via Brouwer." *Economic Theory*, 21, 585-603. [Springer](https://doi.org/10.1007/s001990000076)
+- theprover-community, Mathlib4. [GitHub](https://github.com/leanprover-community/mathlib4/)
+- Tropp, J.A. (2004). "An Introduction to Distributed Algorithms." *Cambridge* — pour les correspondances convexes.
+
+### Difficulte : 5/5
 
 ---
 
@@ -2307,6 +2341,37 @@ Concevoir un pipeline de generation de contenu structure (plans de cours, examen
 
 ---
 
+#### M8 — Demonstration automatique neuro-symbolique : agent LLM pour Lean 4
+
+Construire un agent LLM capable de generer des preuves formelles en Lean 4 de maniere autonome, en combinant un modele de langage (GPT-4, Claude, ou modele local) avec l'environnement Lean (Lake, LSP). L'agent recoit un enonce de theoreme, genere une strategie de preuve, l'execute via le compilateur Lean, et boucle sur les echecs en analysant les messages d'erreur. Ce sujet se situe a la frontiere de la recherche en IA : les proverteurs neuronaux (AlphaProof, DeepMind, LeanDojo) representent l'etat de l'art 2024-2026. Les etudiants implementent une architecture multi-tactiques (recherche arborescente, selection de tactiques par LLM, feedback du compilateur), evaluent sur un benchmark de theoremes Mathlib de difficulte croissante, et analysent les limites (hallucination syntaxique, profondeur de raisonnement, timeout). Les notebooks CoursIA Lean-7 a Lean-11 couvrent l'integration LLM, la preuve agentique, et le neural theorem proving.
+
+### Objectifs
+1. Implementer un pipeline LLM → Lean : generation de tactiques, compilation Lake, parsing des erreurs, feedback iteratif
+2. Construire une architecture de recherche (beam search ou MCTS) combinant selection LLM et verification Lean
+3. Evaluer sur un benchmark gradue : theoremes triviaux (auto) → tactiques simples (simp, omega) → preuves multi-etapes → theoremes Mathlib
+4. Analyser les modes d'echec (hallucination syntaxique, tactiques incorrectes, timeouts, profondeur limitee) et proposer des mitigations
+5. Comparer avec les approches de la litterature (LeanDojo, AlphaProof, COPRA) et discuter les limites fondamentales
+
+### Notebooks CoursIA pertinents
+
+| Notebook | Chemin | Pertinence |
+|----------|--------|------------|
+| Lean-7 LLM Integration | [SymbolicAI/Lean/Lean-7-LLM-Integration.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Lean/Lean-7-LLM-Integration.ipynb) | LLM + Lean, generation de tactiques |
+| Lean-8 Agentic Proving | [SymbolicAI/Lean/Lean-8-AgenticProving.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Lean/Lean-8-AgenticProving.ipynb) | Preuve agentique autonome |
+| Lean-9 SK Multi-Agents | [SymbolicAI/Lean/Lean-9-SemanticKernel-MultiAgents.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Lean/Lean-9-SemanticKernel-MultiAgents.ipynb) | Orchestration multi-agents |
+| Lean-10 LeanDojo | [SymbolicAI/Lean/Lean-10-LeanDojo.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Lean/Lean-10-LeanDojo.ipynb) | LeanDojo, RL pour la preuve |
+| Lean-11 Neural Proving | [SymbolicAI/Lean/Lean-11-NeuralTheoremProving.ipynb](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Lean/Lean-11-NeuralTheoremProving.ipynb) | Proverteurs neuronaux |
+
+### References externes
+- Song, D. et al. (2024). "Towards Large Language Models as Copilots for Theorem Proving in Lean." *arXiv*. [arXiv](https://arxiv.org/abs/2404.12534)
+- First, E. et al. (2023). "Baldur: Whole-Proof Generation and Repair with Large Language Models." *ESEC/FSE 2023*. [arXiv](https://arxiv.org/abs/2303.04910)
+- Polu, S. et al. (2023). "Formal Mathematics Statement Curriculum Learning." *ICLR 2023*. [arXiv](https://arxiv.org/abs/2202.01344)
+- Yang, K. & Deng, J. (2023). "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models." *NeurIPS 2023*. [OpenReview](https://openreview.net/forum?id=3m3kpTxlJW)
+
+### Difficulte : 5/5
+
+---
+
 ### Categorie N : Raisonnement Causal et Decision
 
 #### N1 — Decouverte causale a partir de donnees observationnelles
@@ -2456,7 +2521,7 @@ Construire un systeme d'aide a la decision pour la planification de traitements 
 - Salvatier, J. et al. (2016). "Probabilistic Programming in Python Using PyMC3." *PeerJ Computer Science*. [PeerJ](https://peerj.com/articles/cs-55/)
 - Horridge, M. et al. (2012). "A Practical Guide to Building OWL Ontologies Using Protégé 4." *University of Manchester Technical Report*. [cs.man.ac.uk](https://www.cs.man.ac.uk/~horridgm/)
 
-### Difficulte : 4/5
+### Difficulte : 5/5
 
 ---
 
