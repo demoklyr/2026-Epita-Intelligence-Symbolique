@@ -197,3 +197,8 @@ le réseau devient incohérent et le solveur détecte la contradiction.
   réseaux RCC8.
 - Le coût augmente rapidement avec le nombre de régions, car la propagation
   parcourt des triplets.
+
+
+## Lien des slides
+
+lien : https://docs.google.com/presentation/d/1YhMuNr2YvPKRfWq70yBaB17QkWQ45P8iWE7z0v-mdvA/edit?usp=sharing
